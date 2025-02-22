@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app
+  namespace: flask-ns
+  labels:
+    app: flask 
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask-container
+        image: sharmaaakash170/basic-flask-app:latest
+        resources:
+          limits:
+            cpu: "500m"
+          requests:
+            cpu: "100m"
+        ports:
+        - containerPort: 5000
